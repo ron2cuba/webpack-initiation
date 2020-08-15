@@ -11,5 +11,18 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         //change the bundle filename
         filename: 'bundle.js'
+    },
+    //module property for loader Es6 vers Es5, value is an object
+    module: {
+        //rules value is an array with objects
+        rules: [
+            {
+                //if .ext is .js use babel-loader
+                test: /\.js$/,
+                // exclude node_modules by a regex
+                exclude: /node_modules/,
+                use: 'babel-loader'
+            }
+        ]
     }
 }

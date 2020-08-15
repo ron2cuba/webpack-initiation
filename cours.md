@@ -113,7 +113,7 @@ Elle a pour but d'écouter tous les changements dans les fichiers pour une compi
 Pour sortir de la config par défaut, il faut créer un fichier à la racine un fichier ``webpack.config.js``
 <br>
 ```bash
-/!\ A partir de ce point toutes les infos seront détailées dans webpack.config.js /!\
+/!\ A partir de ce point toutes les infos seront détailées dans webpack.config.js - seule la logique de compréhension sera dans le cours.md/!\
 ```
 ```js
 // import node native package
@@ -134,3 +134,7 @@ module.exports = {
 }
 ```
 Penser à mofifier le fichier de pointage dans ``index.html``
+
+## Les loaders
+Webpack par défaut ne comprend que le javascript et le json, il faut lui indiquer quel loader va transformer quel fichiers. Il va tester l'extension du fichier à l'aide d'expressions régulières et trouver le loader correspondant pour l'interpréter et l'intégrer a son bundle.
+On va transpiler de es6 vers es5 pour exemple.
