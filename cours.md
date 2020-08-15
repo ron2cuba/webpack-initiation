@@ -138,3 +138,4 @@ Penser à mofifier le fichier de pointage dans ``index.html``
 ## Les loaders
 Webpack par défaut ne comprend que le javascript et le json, il faut lui indiquer quel loader va transformer quel fichiers. Il va tester l'extension du fichier à l'aide d'expressions régulières et trouver le loader correspondant pour l'interpréter et l'intégrer a son bundle.
 On va transpiler de es6 vers es5 pour exemple.
+creer un fichier ``.babelrc`` qui contient un objet ``.json`` qui comporte la propriété presets dont la valeur est un tableau est on indique les presets utlisés
