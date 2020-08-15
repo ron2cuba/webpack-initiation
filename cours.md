@@ -12,6 +12,8 @@ mkdir webpack-exemple && cd webpack-exemple && npm init -y && npm i webpack webp
 
 ```
 
+```/!\ changement de ``_dev`` en ``src`` pour ne pas compliquer tout de suite avec des entrées différentes. /!\```
+
 ### Import de fonction
 
 Webpack nous permet de découper nos et de les importer à la maniere de Node. Ici le fichier math.js, qui comporte de simples fonctions d'addition et de multiplication, elles seront appelées dans ``index.js``.
@@ -40,3 +42,45 @@ Dans le teminal :
 npm run build
 ```
 Il nous précisera que nous avons oublié de lui annoncer si nous sommes en mode developpement ou production.
+
+Dans la console on constate le entry point ``main.js`` à lui même recours à ``math.js`` et qu'un bundle avec l'ensemble est créé dans un répertoire ``dist`` car nous sommes avec la config par défaut.
+
+```bash
+> webpack-exemple@1.0.0 build C:\Users\ronln\Desktop\webpack\webpack-exemple
+> webpack
+
+Hash: 69dda56df44d2491d7f9
+Version: webpack 4.44.1
+Time: 213ms
+Built at: 2020-08-15 12:09:21
+  Asset       Size  Chunks             Chunk Names
+main.js  978 bytes       0  [emitted]  main
+Entrypoint main = main.js
+[0] ./src/index.js + 1 modules 149 bytes {0} [built]
+    | ./src/index.js 74 bytes [built]
+    | ./src/math.js 75 bytes [built]
+```
+Je rajoute ``--mode development`` à la commande ``build`` dans ``package.json``
+
+```json
+"scripts": {
+    "build": "webpack --mode development"
+  },
+  ```
+  Dans ce mode on ne voit plus l'arbre de dépendances et il n'y a plus de compression dans le fichier de résultat ``assets/main.js``<br>
+  Modifier index.html :
+  ```html
+<body>
+    <script src="../dist/main.js"></script>
+</body>
+  ```
+  Et dans la console on peut observer la bonne interprétation de ``main.js`` :
+```bash
+3
+```
+Le bundler importe uniquement ce dont il a besoin, les fonction non appelées ne sont pas importées
+exemple : 
+```js 
+export const mult = (a, b) => a * b;
+```
+n'est pas inteprétée.
