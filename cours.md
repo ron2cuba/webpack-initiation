@@ -140,7 +140,7 @@ Webpack par défaut ne comprend que le javascript et le json, il faut lui indiqu
 On va transpiler de es6 vers es5 pour exemple.
 creer un fichier ``.babelrc`` qui contient un objet ``.json`` qui comporte la propriété presets dont la valeur est un tableau est on indique les presets utlisés.
 <br>
-Qaund on ajoute dans ``index.js`` (pour rappel dans ce fichier que l'on importe tout ce qui doit passer par ``webpack.config.js``), on remarque qe webpack ne comprends pas le css
+Qaund on ajoute dans ``index.js`` (pour rappel fichier où l'on importe tout ce qui doit passer par ``webpack.config.js``), on remarque que webpack ne comprends pas autre chose que le ``.js``.
 ```js
 //index.js
 import './app';
@@ -176,4 +176,14 @@ npm ERR! This is probably not a problem with npm. There is likely additional log
 npm ERR! A complete log of this run can be found in:
 npm ERR!     C:\Users\ronln\AppData\Roaming\npm-cache\_logs\2020-08-15T12_56_26_172Z-debug.log
 ```
-Il faut faire entrer en action un nouveau loader qui sera capable de gérer les fichiers ``.css``
+Il faut faire entrer en action un nouveau loader qui sera capable de gérer les fichiers ``.css``<br>
+
+## les plugins
+
+La différence entre les loaders et les plugins:
+- loaders s'appliquent fichier par fichier (il teste fichier/fichier et si ok il transforme)
+- plugin s'execute au niveau du package et du bundle (ex: plug-in de minification)
+
+il faut require le plug-in pour l'utiliser, puis créer une instance.<br>
+dans l'objet module de ``webpack.config.js``<br>
+En exemple on utilisera entre autre le pogressPlugin 8:28

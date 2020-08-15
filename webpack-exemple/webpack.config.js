@@ -1,5 +1,21 @@
 // import node native package
 const path = require('path');
+// import webpack pour les plugins
+const webpack = require('webpack');
+
+
+/**
+ * Options for progress-plugin
+ */
+const handler = (percentage, message, ...args) => {
+    //add percent message 
+    const percent = (percentage * 100).toFixed(2);
+    const msg = message.toUpperCase();
+    //if arge.lenght === 0 return nothing else join them by |
+    const argOrDefault = (args.length === 0) ? "" : args.join(' | ');
+    // e.g. Output each progress message directly to the console:
+    console.info(percent, msg, ...argOrDefault);
+};
 
 module.exports = {
     //starting point for bundling
@@ -42,4 +58,8 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        // import de progressPlugIn deja dans webpack => une instance suffit
+        new webpack.ProgressPlugin(handler),
+    ]
 }
