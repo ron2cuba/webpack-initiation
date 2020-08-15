@@ -7,7 +7,7 @@ Il peut gérer plusieurs types de fichiers et les convertir afin qu'ils soient c
 Il est nécessaire d'avoir nodeJs d'installé et NPM
 
 ### Crétion d'un projet d'exemple
-```
+```bash
 mkdir webpack-exemple && cd webpack-exemple && npm init -y && npm i webpack webpack-cli --save-dev
 
 ```
@@ -38,7 +38,7 @@ le nom de la commande build permettra a webpack d'aller chercher directement la 
   },
 ```
 Dans le teminal :
-```
+```bash
 npm run build
 ```
 Il nous précisera que nous avons oublié de lui annoncer si nous sommes en mode developpement ou production.
@@ -84,3 +84,27 @@ exemple :
 export const mult = (a, b) => a * b;
 ```
 n'est pas inteprétée.
+
+## webpack-dev-server
+
+Installer un serveur de dev sera plus facile pour la suite:
+
+```bash
+npm i webpack-dev-server
+```
+On rajoute à la partie script dans le ``index.json``
+```json
+"dev": "webpack-dev-server --mode development"
+```
+Lancer la commande 
+```bash
+npm run dev
+```
+Avec ``ctrl+clic`` on peut acceder directement au server et si on se rend a ``/src/`` on obtient le même résultat. Un petit gain de temps à l'ouverture du navigateur.
+
+On peut désormais ajouter la commande dans ``package.json`` :
+```json
+"watch": "webpack --mode developement --watch"
+```
+Elle a pour but d'écouter tous les changements dans les fichiers pour une compilation automatique.
+
