@@ -138,4 +138,42 @@ Penser à mofifier le fichier de pointage dans ``index.html``
 ## Les loaders
 Webpack par défaut ne comprend que le javascript et le json, il faut lui indiquer quel loader va transformer quel fichiers. Il va tester l'extension du fichier à l'aide d'expressions régulières et trouver le loader correspondant pour l'interpréter et l'intégrer a son bundle.
 On va transpiler de es6 vers es5 pour exemple.
-creer un fichier ``.babelrc`` qui contient un objet ``.json`` qui comporte la propriété presets dont la valeur est un tableau est on indique les presets utlisés
+creer un fichier ``.babelrc`` qui contient un objet ``.json`` qui comporte la propriété presets dont la valeur est un tableau est on indique les presets utlisés.
+<br>
+Qaund on ajoute dans ``index.js`` (pour rappel dans ce fichier que l'on importe tout ce qui doit passer par ``webpack.config.js``), on remarque qe webpack ne comprends pas le css
+```js
+//index.js
+import './app';
+```
+la console affiche :
+```bash
+$ npm run build
+
+> webpack-exemple@1.0.0 build C:\Users\ronln\Desktop\webpack\webpack-exemple
+> webpack --mode development
+
+Hash: 2b16358a3df90b689106
+Version: webpack 4.44.1
+Time: 579ms
+Built at: 2020-08-15 14:56:26
+    Asset      Size  Chunks             Chunk Names
+bundle.js  4.84 KiB    main  [emitted]  main
+Entrypoint main = bundle.js
+[./src/index.js] 84 bytes {main} [built]
+[./src/math.js] 122 bytes {main} [built]
+
+ERROR in ./src/index.js
+Module not found: Error: Can't resolve './app' in 'C:\Users\ronln\Desktop\webpack\webpack-exemple\src'
+ @ ./src/index.js 2:0-15
+npm ERR! code ELIFECYCLE
+npm ERR! errno 2
+npm ERR! webpack-exemple@1.0.0 build: `webpack --mode development`
+npm ERR! Exit status 2
+npm ERR!
+npm ERR! Failed at the webpack-exemple@1.0.0 build script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\ronln\AppData\Roaming\npm-cache\_logs\2020-08-15T12_56_26_172Z-debug.log
+```
+Il faut faire entrer en action un nouveau loader qui sera capable de gérer les fichiers ``.css``

@@ -1,4 +1,6 @@
-import { add } from "./math";
+import { add, mult, div } from "./math";
+import './app.scss';
+import './tag';
 
-const res = add(1, 2);
-console.log(res);
+
+console.log(add(1, 2), mult(6, 4), div(2,2));
