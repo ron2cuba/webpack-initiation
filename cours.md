@@ -108,3 +108,29 @@ On peut désormais ajouter la commande dans ``package.json`` :
 ```
 Elle a pour but d'écouter tous les changements dans les fichiers pour une compilation automatique.
 
+## Personnalisation de webpack
+
+Pour sortir de la config par défaut, il faut créer un fichier à la racine un fichier ``webpack.config.js``
+<br>
+```bash
+/!\ A partir de ce point toutes les infos seront détailées dans webpack.config.js /!\
+```
+```js
+// import node native package
+const path = require('path');
+
+module.exports = {
+    //starting point for bundling
+    entry: './src/index.js',
+    //ending point after compiling
+    //value is an object with 2 properties
+    output: {
+        //path (package natively given by node for an absolute path) 
+        path: path.resolve(__dirname, 'dist'),
+        //change the bundle filename
+        filename: 'bundle.js'
+
+    }
+}
+```
+Penser à mofifier le fichier de pointage dans ``index.html``
