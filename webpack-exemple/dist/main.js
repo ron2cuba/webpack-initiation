@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mat
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"add\", function() { return add; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"mult\", function() { return mult; });\nconst add = (a, b) => a + b;\r\nconst mult = (a, b) => a * b;\r\n\n\n//# sourceURL=webpack:///./src/math.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"add\", function() { return add; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"mult\", function() { return mult; });\nconst add = (a, b) => a + b;\r\nconst mult = (a, b) => a * b;\r\ndiv()\r\n\n\n//# sourceURL=webpack:///./src/math.js?");
 
 /***/ })
 
