@@ -187,3 +187,13 @@ La différence entre les loaders et les plugins:
 il faut require le plug-in pour l'utiliser, puis créer une instance.<br>
 dans l'objet module de ``webpack.config.js``<br>
 En exemple on utilisera entre autre le pogressPlugin 8:28
+
+## plug-in externe
+
+```bash 
+npm i --save-dev html-webpack-plugin
+```
+
+``HtmlWebpackPlugin`` est utilisé pour injecter le script js principal dans le dom.
+
+

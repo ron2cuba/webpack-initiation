@@ -2,6 +2,8 @@
 const path = require('path');
 // import webpack pour les plugins
 const webpack = require('webpack');
+//import HtmlWebpackPlugIn
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 /**
@@ -27,7 +29,7 @@ module.exports = {
         //path (package natively given by node for an absolute path) 
         path: path.resolve(__dirname, 'dist'),
         //change the bundle filename
-        filename: 'bundle.js'
+        filename: 'bundle.js' //[chunkhash].js if you want to keep a save
     },
     //module property , value is an object
     module: {
@@ -61,5 +63,13 @@ module.exports = {
     plugins: [
         // import de progressPlugIn deja dans webpack => une instance suffit
         new webpack.ProgressPlugin(handler),
-    ]
+        new HtmlWebpackPlugin({
+            //optional: hash for cache inconvenient
+            hash: true,
+            //optional: init varariable title (add a var and using it in html)
+            // title: 'Webpack 4',
+            //use template
+            template: './src/index.html'
+        }),
+    ],
 }
