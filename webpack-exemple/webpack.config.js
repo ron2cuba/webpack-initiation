@@ -4,6 +4,8 @@ const path = require('path');
 const webpack = require('webpack');
 //import HtmlWebpackPlugIn
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// import webpack-bundle-analyzer
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 /**
@@ -80,6 +82,21 @@ module.exports = {
             filename: 'technos.html',
             //use template
             template: './src/technos.html'
-        })
+        }),
+        //analyze all plugins for optimisation
+        new BundleAnalyzerPlugin()
     ],
+    //to do one time libraries calling, if they are used in different packages
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                node_vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    //static & dynamic imports
+                    chunks: "all",
+                    priority: 1
+                },
+            },
+        },
+    },
 }

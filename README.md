@@ -1,3 +1,6 @@
+![Webpack Logo](/img/webpack.png)
+[Site Officiel](https://webpack.js.org/)
+
 # Webpack
 
 ## Pourquoi webpack: manager ses assets
@@ -219,5 +222,31 @@ new HtmlWebpackPlugin({
     filename: 'technos.html'
 }),
 ```
+
+## webpack-analyser-plugin
+
+Afin d'eviter les multiples appels à des librairies utilisées et chargées par plusieurs packages il faut installer ce plug-in. Webpack optimisera les appels.
+
+```bash
+npm i -D webpack-bundle-analyzer
+```
+Une fenêtre se chargera de montrer les différents appels.
+<br>
+Il faut ensuite utiliser ``splitChunks`` et lui indiquer cette série de propriétés:
+```js
+ optimization: {
+        splitChunks: {
+            cacheGroups: {
+                node_vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    //static & dynamic imports
+                    chunks: "all",
+                    priority: 1
+                },
+            },
+        },
+    },
+```
+Se référer à la [documentation](https://webpack.js.org/plugins/split-chunks-plugin/) pour en savoir plus 
 
 
