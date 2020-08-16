@@ -116,7 +116,7 @@ Elle a pour but d'écouter tous les changements dans les fichiers pour une compi
 Pour sortir de la config par défaut, il faut créer un fichier à la racine un fichier ``webpack.config.js``
 <br>
 ```bash
-/!\ A partir de ce point toutes les infos seront détailées dans webpack.config.js - seule la logique de compréhension sera dans le cours.md/!\
+/!\ A partir de ce point toutes les infos seront détailées dans webpack.config.js - seule la logique de compréhension sera dans le README.md/!\
 ```
 ```js
 // import node native package
