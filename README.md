@@ -1,4 +1,4 @@
-![Webpack Logo](/img/webpack.png)
+<img src="./img/Webpack.png" alt="logo Webpack" title="Webpack"><br>
 [Site Officiel](https://webpack.js.org/)
 
 # Webpack
