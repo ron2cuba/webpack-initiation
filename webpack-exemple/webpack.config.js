@@ -21,15 +21,16 @@ const handler = (percentage, message, ...args) => {
 
 module.exports = {
     //starting point for bundling
-    entry:  [
-        './src/index.js',
-        ],
+    entry:  {
+        index: "./src/index.js",
+        technos: "./src/technos.js"
+    },
     //ending point after compiling, value is an object with 2 properties
     output: {
         //path (package natively given by node for an absolute path) 
         path: path.resolve(__dirname, 'dist'),
         //change the bundle filename
-        filename: 'bundle.js' //[chunkhash].js if you want to keep a save
+        filename: '[name].js' //[chunkhash].js if you want to keep a save
     },
     //module property , value is an object
     module: {
@@ -61,15 +62,24 @@ module.exports = {
         ],
     },
     plugins: [
-        // import de progressPlugIn deja dans webpack => une instance suffit
+        // import de progressPlugIn already in webpack
         new webpack.ProgressPlugin(handler),
         new HtmlWebpackPlugin({
-            //optional: hash for cache inconvenient
+            //optional: hash for cache inconvenient in dev mode
             hash: true,
             //optional: init varariable title (add a var and using it in html)
-            // title: 'Webpack 4',
+            title: 'Webpack 4',
             //use template
             template: './src/index.html'
         }),
+        new HtmlWebpackPlugin({
+            //optional: hash for cache inconvenient in dev mode
+            hash: true,
+            //optional: init varariable title (add a var and using it in html)
+            title: 'Technos',
+            filename: 'technos.html',
+            //use template
+            template: './src/technos.html'
+        })
     ],
 }

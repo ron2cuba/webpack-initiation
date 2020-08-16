@@ -1,7 +1,10 @@
 $color : white;
 body { 
-    background: #000;
+    background-color: rgb(163, 145, 145);
     h1 {
         color:$color
+    }
+    a {
+        color: $color;
     }
 }

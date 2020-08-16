@@ -196,4 +196,28 @@ npm i --save-dev html-webpack-plugin
 
 ``HtmlWebpackPlugin`` est utilisé pour injecter le script js principal dans le dom.
 
+## Plusieurs bundles en fonction des pages
+
+On peut créer un objet pour les entrées afin d'avoir un script différent par page.
+Il faut dans ce cas un objet HtmlWepackPlugin par page :
+```js
+new HtmlWebpackPlugin({
+    //optional: hash for cache inconvenient in dev mode
+    hash: true,
+    //optional: init varariable title (add a var and using it in html)
+    title: 'Webpack 4',
+    //use template
+    template: './src/index.html'
+}),
+new HtmlWebpackPlugin({
+    //optional: hash for cache inconvenient in dev mode
+    hash: true,
+    //optional: init varariable title (add a var and using it in html)
+    title: "technos",
+    // to target the script
+    chunks: ['technos'],
+    filename: 'technos.html'
+}),
+```
+
 
