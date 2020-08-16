@@ -90,6 +90,7 @@ module.exports = {
     optimization: {
         splitChunks: {
             cacheGroups: {
+                //we want to optimize librariries in node_modules
                 node_vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     //static & dynamic imports
