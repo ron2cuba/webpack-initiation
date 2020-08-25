@@ -19,7 +19,8 @@ mkdir webpack-exemple && cd webpack-exemple && npm init -y && npm i webpack webp
 
 ### Import de fonction
 
-Webpack nous permet de découper nos et de les importer à la maniere de Node. Ici le fichier math.js, qui comporte de simples fonctions d'addition et de multiplication, elles seront appelées dans ``index.js``.
+Webpack nous permet de découper nos fichiers et de les importer à la manière de Node. Ici le fichier math.js, qui comporte de simples fonctions d'addition et de multiplication, elles seront appelées dans ``index.js``.
+
 ```js
 //fichier math.js
 export const add = (a, b) => a + b;
@@ -31,22 +32,28 @@ import { add } from "./math";
 const res = add(1, 2);
 console.log(res);
 ```
+
 Pour que webpack puisse faire son travail, il faut créer un script de "build".<br>
+
 Dans ``package.json`` :
-le nom de la commande build permettra a webpack d'aller chercher directement la commande dans le dossier ``.bin`` de ``node_module``
+le nom de la commande build interne à webpack permettra d'aller chercher directement la commande dans le dossier ``.bin`` de ``node_module``.
+
 ```json
 "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 ```
+
 Dans le teminal :
+
 ```bash
 npm run build
 ```
-Il nous précisera que nous avons oublié de lui annoncer si nous sommes en mode developpement ou production.
 
-Dans la console on constate le entry point ``main.js`` à lui même recours à ``math.js`` et qu'un bundle avec l'ensemble est créé dans un répertoire ``dist`` car nous sommes avec la config par défaut.
+Webpack nous précisera que nous avons "oublié" de lui annoncer si nous sommes en mode developpement ou production.
+
+Dans la console on constate que le entry point ``main.js`` à lui même recours à ``math.js`` et qu'un bundle avec l'ensemble est créé dans un répertoire ``dist`` car nous sommes avec la config par défaut.
 
 ```bash
 > webpack-exemple@1.0.0 build C:\Users\ronln\Desktop\webpack\webpack-exemple
@@ -63,6 +70,7 @@ Entrypoint main = main.js
     | ./src/index.js 74 bytes [built]
     | ./src/math.js 75 bytes [built]
 ```
+
 Je rajoute ``--mode development`` à la commande ``build`` dans ``package.json``
 
 ```json
@@ -70,22 +78,30 @@ Je rajoute ``--mode development`` à la commande ``build`` dans ``package.json``
     "build": "webpack --mode development"
   },
   ```
+  
   Dans ce mode on ne voit plus l'arbre de dépendances et il n'y a plus de compression dans le fichier de résultat ``assets/main.js``<br>
+  
   Modifier index.html :
+  
   ```html
 <body>
     <script src="../dist/main.js"></script>
 </body>
   ```
+  
   Et dans la console on peut observer la bonne interprétation de ``main.js`` :
+  
 ```bash
 3
 ```
+
 Le bundler importe uniquement ce dont il a besoin, les fonction non appelées ne sont pas importées
-exemple : 
+exemple :
+
 ```js 
 export const mult = (a, b) => a * b;
 ```
+
 n'est pas inteprétée.
 
 ## webpack-dev-server
@@ -95,29 +111,37 @@ Installer un serveur de dev sera plus facile pour la suite:
 ```bash
 npm i webpack-dev-server
 ```
+
 On rajoute à la partie script dans le ``index.json``
+
 ```json
 "dev": "webpack-dev-server --mode development"
 ```
+
 Lancer la commande 
+
 ```bash
 npm run dev
 ```
+
 Avec ``ctrl+clic`` on peut acceder directement au server et si on se rend a ``/src/`` on obtient le même résultat. Un petit gain de temps à l'ouverture du navigateur.
 
 On peut désormais ajouter la commande dans ``package.json`` :
+
 ```json
 "watch": "webpack --mode developement --watch"
 ```
+
 Elle a pour but d'écouter tous les changements dans les fichiers pour une compilation automatique.
 
 ## Personnalisation de webpack
 
 Pour sortir de la config par défaut, il faut créer un fichier à la racine un fichier ``webpack.config.js``
-<br>
+
 ```bash
 /!\ A partir de ce point toutes les infos seront détailées dans webpack.config.js - seule la logique de compréhension sera dans le README.md/!\
 ```
+
 ```js
 // import node native package
 const path = require('path');
@@ -136,6 +160,7 @@ module.exports = {
     }
 }
 ```
+
 Penser à mofifier le fichier de pointage dans ``index.html``
 
 ## Les loaders
@@ -144,11 +169,14 @@ On va transpiler de es6 vers es5 pour exemple.
 creer un fichier ``.babelrc`` qui contient un objet ``.json`` qui comporte la propriété presets dont la valeur est un tableau est on indique les presets utlisés.
 <br>
 Qaund on ajoute dans ``index.js`` (pour rappel fichier où l'on importe tout ce qui doit passer par ``webpack.config.js``), on remarque que webpack ne comprends pas autre chose que le ``.js``.
+
 ```js
 //index.js
 import './app';
 ```
+
 la console affiche :
+
 ```bash
 $ npm run build
 
@@ -179,6 +207,7 @@ npm ERR! This is probably not a problem with npm. There is likely additional log
 npm ERR! A complete log of this run can be found in:
 npm ERR!     C:\Users\ronln\AppData\Roaming\npm-cache\_logs\2020-08-15T12_56_26_172Z-debug.log
 ```
+
 Il faut faire entrer en action un nouveau loader qui sera capable de gérer les fichiers ``.css``<br>
 
 ## les plugins
